@@ -11,6 +11,7 @@ git clone https://github.com/ekdnam/hyperparam-autotuning
 Then, type
 ```
 mkdir input
+cd input
 ```
 
 After that
