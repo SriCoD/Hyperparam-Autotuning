@@ -5,16 +5,16 @@ import numpy as np
 import utils
 
 
-DEVICE = "cuda"
+# DEVICE = "cuda"
 DEVICE = "cpu"
-EPOCHS = 1000
+EPOCHS = 100
 
 
 def run_training(fold, save_model=False):
-    df = pd.read_csv("../input/train_features.csv")
+    df = pd.read_csv("./input/train_features.csv")
     df = df.drop(["cp_time", "cp_dose", "cp_type"], axis=1)
 
-    targets_df = pd.read_csv("../input/train_targets_folds.csv")
+    targets_df = pd.read_csv("./input/train_targets_folds.csv")
 
     feature_columns = df.drop("sig_id", axis=1).columns
     target_columns = targets_df.drop("sig_id", axis=1).columns
@@ -59,7 +59,7 @@ def run_training(fold, save_model=False):
     early_stopping_iter = 10
     early_stopping_counter = 0
 
-    for epoch in EPOCHS:
+    for epoch in range(EPOCHS):
         train_loss = eng.train(train_loader)
         valid_loss = eng.evaluate(valid_loader)
         print(f"{fold}, {epoch}, {train_loss}, {valid_loss}")
